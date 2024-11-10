@@ -13,14 +13,43 @@ const result = document.getElementById('result');
 calculateButton.addEventListener('click', () => {
     // Roadmap Step 3: Validate user input
     const goalAmount = parseFloat(goalAmountInput.value);
+    const currentSavings = parseFloat(currentSavingsInput.value);
+    const monthlyContribution = parseFloat(monthlyContributionInput.value);
 
+    if (isNaN(goalAmount) || isNaN(currentSavings) || isNaN(monthlyContribution)) {
+        result.textContent = 'Please enter valid numbers for all fields.';
+        result.classList.add('show');
+        return;
+    }
+
+    // Roadmap Step 4: Calculate remaining amount and months to reach goal
+    const remainingAmount = goalAmount - currentSavings;
+    const monthsToReachGoal = Math.ceil(remainingAmount / monthlyContribution);
+    const progressPercentage = (currentSavings / goalAmount) * 100;
+
+    // Roadmap Step 5: Update progress bar based on current savings
+    progressBar.style.width = `${progressPercentage}%`;
+
+
+    // Roadmap Step 6: Display result based on the savings progress
+    result.classList.remove('show');
+    setTimeout(() => {
+        // Roadmap Step 7: Handle UI updates and transitions for result display
+
+        if (currentSavings >= goalAmount) {
+            result.innerHTML = `
+            "Congratulations, your savings have bloomed to reach your goal. 🎉"
+            `;
+        } else {
+            result.innerHTML = `
+            "Your savings have not reached your goal yet. You'll reach it in ${monthsToReachGoal} months. Keep nurturing your savings! 🌱"
+            `;
+        }
+
+        result.classList.add('show');
+    }, 100);
 });
 
 
-// Roadmap Step 4: Calculate remaining amount and months to reach goal
 
-// Roadmap Step 5: Update progress bar based on current savings
 
-// Roadmap Step 6: Display result based on the savings progress
-
-// Roadmap Step 7: Handle UI updates and transitions for result display
