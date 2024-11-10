@@ -10,8 +10,12 @@ const progressBar = document.getElementById('progress-bar');
 const result = document.getElementById('result');
 
 // Roadmap Step 2: Add event listener for calculate button
+calculateButton.addEventListener('click', () => {
+    // Roadmap Step 3: Validate user input
+    const goalAmount = parseFloat(goalAmountInput.value);
 
-// Roadmap Step 3: Validate user input
+});
+
 
 // Roadmap Step 4: Calculate remaining amount and months to reach goal
 
